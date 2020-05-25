@@ -1,3 +1,4 @@
+ 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fast_qr_web_scan/screens/scan.dart';
@@ -15,33 +16,33 @@ class _HomeState extends State<Home> {
   //Method //
   @override
   void initState() {
-    super.initState();  
-
+    super.initState();   
+    scanAndWeb();
   }
  
+Future scanAndWeb() async {
+  // -----------------------------------------
+              String results = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Scan(),
+                ),
+              );
+              if (results != null && results !="") {
+                setState(() {
+                  result = results; 
+                });
+                String url = '$result';
+                print('opening... $url');
+                _launchURL(url);
+              }
+}
  
   @override
   void dispose() { 
     super.dispose();
   }
  
-  // Widget settingButton() {
-  //   return RaisedButton(
-  //     color: Colors.blue.shade700,
-  //     child: Text(
-  //       'Setting',
-  //       style: TextStyle(color: Colors.white),
-  //     ),
-  //     onPressed: () {
-  //       print('you click setting button');
-  //       MaterialPageRoute materialPageRoute =
-  //           MaterialPageRoute(builder: (BuildContext context) => Setting());
-  //       Navigator.of(context).push(materialPageRoute);
-  //     },
-  //   );
-  // }
-  
-
 
   _launchURL(String url) async {
     // const url ='https://www.google.com';
@@ -58,27 +59,9 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Widget webButton() {
-    return Column(
-      children: <Widget>[
-        RaisedButton(
-          color: Colors.blue.shade700,
-          child: Text(
-            'OPEN GOOGLEx',
-            style: TextStyle(color: Colors.white),
-          ), 
-           
-          onPressed: () async {
-           _launchURL('https://www.google.com');
-          },
-        ),
-      ],
-    );
-  }
-
   Widget scanButton2() {
     return Column(
-      children: <Widget>[
+      children: <Widget>[ 
         RaisedButton(
           color: Colors.blue.shade700,
           child: Text(
@@ -106,6 +89,12 @@ class _HomeState extends State<Home> {
       ],
     );
   }
+
+   Widget showLogo() {
+    return Container(
+        width: 150.0, height: 150.0, child: Image.asset('images/logo.png'));
+  }
+  
  
   @override
   Widget build(BuildContext context) {
@@ -114,22 +103,21 @@ class _HomeState extends State<Home> {
       drawer:Drawer(
       child: ListView(children: <Widget>[
         ListTile(
-          
+
           onTap: (){
                   showAboutDialog(
                     context: context,
-                    //applicationIcon:  Container(width: 100.0, height: 100.0, child: Image.asset('images/logo.png')),
+                    applicationIcon:  Container(width: 100.0, height: 100.0, child: Image.asset('images/logo.png')),
                     applicationLegalese: 'Developed by by iTum Studio',
                 );
-                
                 },
+                
                 title: Text('Show about Page')
+                ,
               ),
+ 
       ],)
       ),
-      
-        
-      
       
       body: SafeArea(
         child: Container(
@@ -143,12 +131,9 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                
-                scanButton2(),
-                //showButton(),
-                SizedBox(height: 30.0),  
-                webButton(),
-                Text('Hello world')
+                showLogo(),
+                scanButton2(), 
+                SizedBox(height: 30.0),   
               ],
             ),
           ),
