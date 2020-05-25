@@ -20,6 +20,7 @@ class _ScanState extends State<Scan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('HELLO'),),
       body: Column(
         children: <Widget>[
           Expanded(
