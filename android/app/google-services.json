@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "525493127366",
+    "firebase_url": "https://seagate-qr-track-e97e2.firebaseio.com",
+    "project_id": "seagate-qr-track-e97e2",
+    "storage_bucket": "seagate-qr-track-e97e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525493127366:android:1b52bfa47b697d3ab5afc7",
+        "android_client_info": {
+          "package_name": "com.fast_qr_web_scan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525493127366-3lk3qiveoetcsihek25c2q9d6l14seoh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQSBmdhho77EFKP3O9Aqdeod0sLZqELwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525493127366-3lk3qiveoetcsihek25c2q9d6l14seoh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525493127366:android:e29a5eaee43f85abb5afc7",
+        "android_client_info": {
+          "package_name": "com.seagate_fast_qr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525493127366-3lk3qiveoetcsihek25c2q9d6l14seoh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQSBmdhho77EFKP3O9Aqdeod0sLZqELwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525493127366-3lk3qiveoetcsihek25c2q9d6l14seoh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

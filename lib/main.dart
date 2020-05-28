@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fast_qr_web_scan/screens/home.dart';
- 
-
 void main() {
-
   runApp(MyApp());
 }
 

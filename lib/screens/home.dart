@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fast_qr_web_scan/screens/scan.dart';
-
+import 'package:fast_qr_web_scan/screens/setting.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -12,14 +13,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
     String result = ''; 
-
+    String _txtcontain,_txttoadd;
+    SharedPreferences prefs;
   //Method //
   @override
   void initState() {
     super.initState();   
-    scanAndWeb();
+    getSetting();
   }
  
+   void getSetting() async{
+    prefs =await SharedPreferences.getInstance(); 
+    setState(() {
+      _txtcontain = prefs.getString('_txtcontain') ?? "";
+      _txttoadd = prefs.getString('_txttoadd') ?? ""; 
+      }
+    );
+  } 
+
 Future scanAndWeb() async {
   // -----------------------------------------
               String results = await Navigator.push(
@@ -32,8 +43,7 @@ Future scanAndWeb() async {
                 setState(() {
                   result = results; 
                 });
-                String url = '$result';
-                print('opening... $url');
+                String url = '$result'; 
                 _launchURL(url);
               }
 }
@@ -60,6 +70,7 @@ Future scanAndWeb() async {
   }
 
   Widget scanButton2() {
+    String url ='';
     return Column(
       children: <Widget>[ 
         RaisedButton(
@@ -67,8 +78,7 @@ Future scanAndWeb() async {
           child: Text(
             'Scan QR',
             style: TextStyle(color: Colors.white),
-          ), 
-           
+          ),
           onPressed: () async {
                          String results = await Navigator.push(
                 context,
@@ -80,13 +90,35 @@ Future scanAndWeb() async {
                 setState(() {
                   result = results; 
                 });
-                String url = '$result';
+                if(results.contains(_txtcontain)){
+                  url = '$result$_txttoadd';
+                }
+                else{
+                  url = '$result';
+                }
+
                 print('opening... $url');
                 _launchURL(url);
               }
           },
         ),
       ],
+    );
+  }
+
+  Widget settingButton() {
+    return RaisedButton(
+      color: Colors.blue.shade700,
+      child: Text(
+        'Setting',
+        style: TextStyle(color: Colors.white),
+      ),
+      onPressed: () {
+        print('you click setting button');
+        MaterialPageRoute materialPageRoute =
+            MaterialPageRoute(builder: (BuildContext context) => Setting());
+        Navigator.of(context).push(materialPageRoute);
+      },
     );
   }
 
@@ -131,9 +163,10 @@ Future scanAndWeb() async {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                showLogo(),
+               // showLogo(),
                 scanButton2(), 
                 SizedBox(height: 30.0),   
+                settingButton(),
               ],
             ),
           ),

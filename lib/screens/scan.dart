@@ -15,12 +15,10 @@ class _ScanState extends State<Scan> {
   var qrText = '';
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('HELLO'),),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -53,15 +51,7 @@ class _ScanState extends State<Scan> {
       ),
     );
   }
-
-  // bool _isFlashOn(String current) {
-  //   return flashOn == current;
-  // }
-
-  // bool _isBackCamera(String current) {
-  //   return backCamera == current;
-  // }
-
+ 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
